@@ -7,7 +7,6 @@ import {
     LinkedIn,
     Instagram,
     Facebook,
-    LocationOn,
     Phone,
     Email,
     WhatsApp,

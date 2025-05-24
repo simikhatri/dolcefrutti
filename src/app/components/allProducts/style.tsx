@@ -1,4 +1,5 @@
-import { styled, Tabs as MuiTabs, Tab as MuiTab, Grid as MuiGrid, Badge as MuiBadge } from '@mui/material';
+//@typescript-eslint / no-unused-vars
+import { styled, Tabs, Tab, Grid, Badge } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -11,14 +12,14 @@ export const ProductsTab = styled('div')(({ theme }) => ({
     },
 }));
 
-export const StyledTabs = styled(MuiTabs)(({ theme }) => ({
+export const StyledTabs = styled(Tabs)(({ theme }) => ({
     '& .MuiTabs-indicator': {
         backgroundColor: '#e1c343',
         height: '2px',
     },
 }));
 
-export const StyledTab = styled(MuiTab)(({ theme }) => ({
+export const StyledTab = styled(Tab)(({ theme }) => ({
     fontWeight: 'bold',
     fontSize: '15px',
     color: '#333',
@@ -51,7 +52,7 @@ export const StyledTab = styled(MuiTab)(({ theme }) => ({
     },
 }));
 
-export const ProductsGrid = styled(MuiGrid)(({ theme }) => ({
+export const ProductsGrid = styled(Grid)(({ theme }) => ({
     marginTop: '16px',
     [theme.breakpoints.down('sm')]: {
         marginTop: '8px',
@@ -77,7 +78,7 @@ export const ProductCardWrapper = styled('div')(({ theme }) => ({
     },
 }));
 
-export const StyledBadge = styled(MuiBadge)(({ theme }) => ({
+export const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
         borderRadius: '10px 100px / 120px',
         backgroundColor: '#e1c343',

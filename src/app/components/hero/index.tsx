@@ -1,5 +1,5 @@
 'use client';
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import { useEffect, useRef } from 'react';
 import './_.scss';
 import Link from 'next/link';
