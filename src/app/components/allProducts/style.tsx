@@ -12,7 +12,7 @@ export const ProductsTab = styled('div')(({ theme }) => ({
     },
 }));
 
-export const StyledTabs = styled(Tabs)(({ theme }) => ({
+export const StyledTabs = styled(Tabs)(({ }) => ({
     '& .MuiTabs-indicator': {
         backgroundColor: '#e1c343',
         height: '2px',
@@ -59,7 +59,7 @@ export const ProductsGrid = styled(Grid)(({ theme }) => ({
     },
 }));
 
-export const ProductCard = styled('div')(({ theme }) => ({
+export const ProductCard = styled('div')(({ }) => ({
     position: 'relative',
     background: '#fff',
     borderRadius: '10px',
@@ -149,7 +149,7 @@ export const ProductCardPrice = styled('p')(({ theme }) => ({
         marginBottom: '8px',
     },
 }));
-export const StyledLink = styled(Link)(({ theme }) => ({
+export const StyledLink = styled(Link)(({ }) => ({
     textDecoration: 'none',
     color: 'inherit',
     '&:hover': {
