@@ -10,13 +10,13 @@ import {
     StyledTabs,
     StyledTab,
     ProductsGrid,
-    ProductCard,
-    ProductCardWrapper,
-    StyledBadge,
-    ProductCardImage,
-    ProductCardDetails,
-    ProductCardStars,
-    ProductCardPrice,
+    StyledCard,
+    CardHead,
+    CardBadge,
+    CardImage,
+    CardDetails,
+    Rating,
+    Price,
     StyledLink
 } from './style';
 
@@ -46,7 +46,6 @@ const ProductsSection = () => {
     return (
         <StyledBox>
             <Styledh1>Our Products</Styledh1>
-
             <ProductsTab>
                 <StyledTabs
                     value={selectedCategory}
@@ -65,26 +64,26 @@ const ProductsSection = () => {
                 {filteredProducts.slice(0, 8).map((product) => (
                     <ProductsGrid size={{ xs: 12, sm: 6, md: 3 }} key={product.id}>
                         <StyledLink href={`/product/${product.id}`}>
-                            <ProductCard>
-                                <ProductCardWrapper>
-                                    <StyledBadge badgeContent="New">
-                                        <ProductCardImage src={product.image} alt={product.name} width={200} height={200} />
-                                    </StyledBadge>
-                                </ProductCardWrapper>
+                            <StyledCard>
+                                <CardHead>
+                                    <CardBadge badgeContent="New">
+                                        <CardImage src={product.image} alt={product.name} width={200} height={200} />
+                                    </CardBadge>
+                                </CardHead>
 
-                                <ProductCardDetails>
-                                    <ProductCardStars>
+                                <CardDetails>
+                                    <Rating>
                                         {[...Array(5)].map((_, idx) => (
                                             <StarIcon key={idx} className={idx < Math.floor(product.rating) ? 'filled' : 'empty'} fontSize="small" />
                                         ))}
-                                    </ProductCardStars>
+                                    </Rating>
                                     <Styledh3>{product.name}</Styledh3>
-                                    <ProductCardPrice>
+                                    <Price>
                                         ${product.priceAfter.toFixed(2)} <span className="original">${product.priceBefore.toFixed(2)}</span>
-                                    </ProductCardPrice>
+                                    </Price>
                                     <Shopbtn text="Order Now" href={`/product/${product.id}`} />
-                                </ProductCardDetails>
-                            </ProductCard>
+                                </CardDetails>
+                            </StyledCard>
                         </StyledLink>
                     </ProductsGrid>
                 ))}

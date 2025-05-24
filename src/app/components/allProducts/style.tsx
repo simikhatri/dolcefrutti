@@ -1,4 +1,5 @@
-//@typescript-eslint / no-unused-vars
+
+import { Padding } from '@mui/icons-material';
 import { styled, Tabs, Tab, Grid, Badge } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,7 +13,7 @@ export const ProductsTab = styled('div')(({ theme }) => ({
     },
 }));
 
-export const StyledTabs = styled(Tabs)(({ }) => ({
+export const StyledTabs = styled(Tabs)(() => ({
     '& .MuiTabs-indicator': {
         backgroundColor: '#e1c343',
         height: '2px',
@@ -59,7 +60,7 @@ export const ProductsGrid = styled(Grid)(({ theme }) => ({
     },
 }));
 
-export const ProductCard = styled('div')(({ }) => ({
+export const StyledCard = styled('div')(() => ({
     position: 'relative',
     background: '#fff',
     borderRadius: '10px',
@@ -71,19 +72,19 @@ export const ProductCard = styled('div')(({ }) => ({
     justifyContent: 'space-between',
 }));
 
-export const ProductCardWrapper = styled('div')(({ theme }) => ({
+export const CardHead = styled('div')(({ theme }) => ({
     marginBottom: '16px',
     [theme.breakpoints.down('sm')]: {
         marginBottom: '10px',
     },
 }));
 
-export const StyledBadge = styled(Badge)(({ theme }) => ({
+export const CardBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
         borderRadius: '10px 100px / 120px',
         backgroundColor: '#e1c343',
         color: 'black',
-        fontSize: '12px',
+        fontSize: '13px',
         fontWeight: '600',
         position: 'absolute',
         top: '12%',
@@ -101,7 +102,7 @@ export const StyledBadge = styled(Badge)(({ theme }) => ({
     },
 }));
 
-export const ProductCardImage = styled(Image)(({ theme }) => ({
+export const CardImage = styled(Image)(({ theme }) => ({
     objectFit: 'contain',
     maxHeight: '180px',
     width: 'auto',
@@ -113,14 +114,14 @@ export const ProductCardImage = styled(Image)(({ theme }) => ({
     },
 }));
 
-export const ProductCardDetails = styled('div')(({ theme }) => ({
+export const CardDetails = styled('div')(({ theme }) => ({
     paddingBottom: '20px',
     [theme.breakpoints.down('sm')]: {
         paddingBottom: '10px',
     },
 }));
 
-export const ProductCardStars = styled('div')(({ theme }) => ({
+export const Rating = styled('div')(({ theme }) => ({
     marginBottom: '6px',
     '& .MuiSvgIcon-root': {
         color: '#ffb400',
@@ -134,7 +135,7 @@ export const ProductCardStars = styled('div')(({ theme }) => ({
     },
 }));
 
-export const ProductCardPrice = styled('p')(({ theme }) => ({
+export const Price = styled('p')(({ theme }) => ({
     fontWeight: 'bold',
     marginBottom: '8px',
     fontSize: '16px',
@@ -149,7 +150,7 @@ export const ProductCardPrice = styled('p')(({ theme }) => ({
         marginBottom: '8px',
     },
 }));
-export const StyledLink = styled(Link)(({ }) => ({
+export const StyledLink = styled(Link)(() => ({
     textDecoration: 'none',
     color: 'inherit',
     '&:hover': {

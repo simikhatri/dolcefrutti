@@ -1,10 +1,21 @@
 'use client';
-import { Box } from '@mui/material';
+
 import { useRef, useState, useEffect } from 'react';
 import { ArrowForward, ArrowBack } from '@mui/icons-material';
 import { Styledh1, StyledBox, Styledh3 } from '../ui/Common';
-import './_.scss';
-import Link from 'next/link';
+import {
+  Header,
+  Controls,
+  ControlsBtn,
+  ProgressBar,
+  ProgressLine,
+  ProgressLineBar,
+  Slider,
+  SliderCard,
+  SliderCardLink,
+  SliderCardImage,
+  SliderCardName,
+} from './style';
 
 const products = [
   { id: 1, name: 'Gravenstein Apples', price: '$2.99', image: '/Gravenstein-Apples.jpg' },
@@ -50,44 +61,44 @@ const BestSeller = () => {
       }
     }
   };
+
   return (
-    <StyledBox className="bestseller">
-      <Box className="bestseller_head">
-        <Styledh1 className="bestseller_head_heading">
+    <StyledBox>
+      <Header>
+        <Styledh1>
           Best Seller
         </Styledh1>
-        <Box className="bestseller_head_controls">
-          <button className="bestseller_head_controls_btn" onClick={handlePrev} disabled={currentSlide === 0}>
+        <Controls >
+          <ControlsBtn onClick={handlePrev} disabled={currentSlide === 0}>
             <ArrowBack />
-          </button>
-          <button className="bestseller_head_controls_btn" onClick={handleNext} disabled={currentSlide === totalSlides - 1}>
+          </ControlsBtn>
+          <ControlsBtn onClick={handleNext} disabled={currentSlide === totalSlides - 1}>
             <ArrowForward />
-          </button>
-        </Box>
-      </Box>
-      <Box className="bestseller_progress">
-        <Box className="bestseller_progress_line">
-          <Box
-            className="bestseller_progress_line_bar"
+          </ControlsBtn>
+        </Controls>
+      </Header>
+      <ProgressBar>
+        <ProgressLine>
+          <ProgressLineBar
             sx={{ width: `${((currentSlide + 1) / totalSlides) * 100}%` }}
           />
-        </Box>
-      </Box>
-      <Box className="bestseller_slider" ref={sliderRef}>
+        </ProgressLine>
+      </ProgressBar>
+      <Slider ref={sliderRef} >
         {products.map((product) => (
-          <Box key={product.id} className="bestseller_slider_card">
-            <Link href={`/product/${product.id}`} className="bestseller_slider_card_link">
-              <Box className="bestseller_slider_card_image">
+          <SliderCard key={product.id} >
+            <SliderCardLink href={`/product/${product.id}`}>
+              <SliderCardImage>
                 <img src={product.image} alt={product.name} />
-              </Box>
-              <Styledh3>
+              </SliderCardImage>
+              <SliderCardName>
                 {product.name}
-              </Styledh3>
-            </Link>
-          </Box>
+              </SliderCardName>
+            </SliderCardLink>
+          </SliderCard>
         ))}
-      </Box>
-    </StyledBox >
+      </Slider>
+    </StyledBox>
   );
 };
 
