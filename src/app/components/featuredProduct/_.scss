@@ -1,0 +1,117 @@
+.featured {
+  padding: 46px 8%;
+
+  &_card {
+    border-radius: 20px;
+    position: relative;
+    min-width: 300px;
+  
+    &--primary {
+      background-color: #f5f5e5;
+      flex-direction: column;
+
+      @media (max-width: 992px) {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    &_content {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      padding: 46px 10px 0 46px;
+
+      &_title {
+        font-weight: 800;
+        font-size: 40px;
+      }
+
+      &_price {
+        font-size: 26px;
+        font-weight: 600;
+        margin: 10px 0;
+         padding-bottom: 12px;
+        strong {
+          font-size: 40px;
+          font-weight: 800;
+        }
+      }
+      &_shipping {
+        font-size: 18px;
+        font-weight: 400;
+        color: #5e5c5c;
+        margin-bottom: 20px;
+      }
+    }
+    &--secondary {
+      background-color: #fceee4;
+
+      &:nth-child(2) {
+        background-color: #e4f9e6;
+      }
+
+      flex-direction: row;
+      gap: 16px;
+
+      @media (max-width: 992px) {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    &_sec {
+      display: flex;
+       &_content { 
+        padding: 30px 20px;
+        &_title{
+          font-size: 24px;
+          font-weight: 800;
+        }
+         &_price {
+        font-size: 20px;
+        font-weight: 600;
+        padding-bottom: 6px;
+        strong {
+          font-size: 24px;
+          font-weight: 800;
+        }
+      }
+        &_shipping{
+           font-size: 16px;
+        font-weight: 400;
+        color: #5e5c5c;
+        margin-bottom: 12px;
+        }
+       }
+    }
+    &_image{
+       display: flex;
+      flex-direction: column;
+      align-items: end;
+      padding: 0 40px 4px 0;
+    }
+    &--third{
+      background-color: rgb(202, 243, 202);
+      .featured_card_sec_content{
+        padding: 30px 40px;
+      }
+    }
+   
+  }
+}
+
+.featured_column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (max-width: 992px) {
+  .featured {
+    &_card {
+      &_content {
+        align-items: center;
+        text-align: center;
+      }
+    }
+  }
+}
