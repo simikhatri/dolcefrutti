@@ -118,10 +118,10 @@ export const ReadMoreButton = styled(Button)({
     },
 });
 
-export const ArrowButton = styled(IconButton)(({ theme }) => ({
+export const ArrowButton = styled(IconButton)({
     backgroundColor: "#e1c343",
     color: "#000",
     '&:hover': {
         backgroundColor: "#e1c343",
     },
-}));
+});

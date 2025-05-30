@@ -82,8 +82,8 @@ const Navbar = () => {
     const handleMobileShopMenuClose = () => {
         setMobileShopMenuAnchorEl(null);
     };
-    // eslint-disable-next-line @typescript-eslint/no-unused-var
-    const handleMenuCloseOnClick = (event: React.MouseEvent<HTMLElement> | React.KeyboardEvent | MouseEvent) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const handleMenuCloseOnClick = (_event: React.MouseEvent<HTMLElement> | React.KeyboardEvent | MouseEvent) => {
         console.log('Outside click detected, ignoring');
     };
 
