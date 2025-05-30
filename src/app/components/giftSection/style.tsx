@@ -1,7 +1,7 @@
-import { styled, Box as MBox, Typography as MTypography } from '@mui/material';
+import { styled, Box, Typography } from '@mui/material';
 import Link from 'next/link';
 
-export const GiftSection = styled(MBox)(({ theme }) => ({
+export const GiftSection = styled(Box)(({ theme }) => ({
     width: '100%',
     margin: '30px 0',
     [theme.breakpoints.down('sm')]: {
@@ -9,7 +9,7 @@ export const GiftSection = styled(MBox)(({ theme }) => ({
     },
 }));
 
-export const SliderContainer = styled(MBox)(({ theme }) => ({
+export const SliderContainer = styled(Box)(({ theme }) => ({
     position: 'relative',
     width: '100%',
     height: '550px',
@@ -23,7 +23,11 @@ export const SliderContainer = styled(MBox)(({ theme }) => ({
     },
 }));
 
-export const Slide = styled(MBox)<{ active: boolean }>(({ theme, active }) => ({
+export const Slide = styled(Box, {
+    shouldForwardProp: (prop) => prop !== 'active',
+})<{
+    active: boolean;
+}>(({ active }) => ({
     display: active ? 'block' : 'none',
     width: '100%',
     height: '100%',
@@ -43,13 +47,13 @@ export const Slide = styled(MBox)<{ active: boolean }>(({ theme, active }) => ({
         backgroundColor: 'rgba(0, 0, 0, 0.3)',
         zIndex: 1,
     },
-    [theme.breakpoints.down('sm')]: {
-        backgroundPosition: 'top',
-        minHeight: '500px',
-    },
+    // [theme.breakpoints.down('sm')]: {
+    //     backgroundPosition: 'top',
+    //     minHeight: '500px',
+    // },
 }));
 
-export const SlideContent = styled(MBox)(({ theme }) => ({
+export const SlideContent = styled(Box)(({ theme }) => ({
     position: 'absolute',
     top: '50%',
     left: '10%',
@@ -63,20 +67,20 @@ export const SlideContent = styled(MBox)(({ theme }) => ({
     alignItems: 'flex-start',
     [theme.breakpoints.down('md')]: {
         width: '50%',
-        padding: '30px',
+        padding: '20px',
     },
     [theme.breakpoints.down('sm')]: {
-        width: '80%',
-        top: '60%',
+        width: '94%',
+        top: '70%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        alignItems: 'center',
-        textAlign: 'center',
-        padding: '20px',
+        alignItems: 'left',
+        textAlign: 'left',
+        padding: '10px',
     },
 }));
 
-export const SlideTitle = styled(MTypography)(({ theme }) => ({
+export const SlideTitle = styled(Typography)(({ theme }) => ({
     fontSize: '48px',
     fontWeight: 700,
     color: '#e1c343',
@@ -88,8 +92,8 @@ export const SlideTitle = styled(MTypography)(({ theme }) => ({
         fontSize: '36px',
     },
     [theme.breakpoints.down('sm')]: {
-        fontSize: '28px',
-        marginBottom: '12px',
+        fontSize: '20px',
+        marginBottom: '8px',
     },
     '@keyframes fadeInSlide': {
         '0%': { opacity: 0, transform: 'translateY(20px)' },
@@ -97,14 +101,14 @@ export const SlideTitle = styled(MTypography)(({ theme }) => ({
     },
 }));
 
-export const SlideDesc = styled(MTypography)(({ theme }) => ({
+export const SlideDesc = styled(Typography)(({ theme }) => ({
     fontSize: '18px',
     fontWeight: 400,
     color: '#fff',
     marginBottom: '24px',
     textShadow: '1px 1px 3px rgba(0, 0, 0, 0.5)',
     opacity: 0,
-    animation: 'fadeInSlide 1s ease forwards 0.5s', // Delay after title
+    animation: 'fadeInSlide 1s ease forwards 0.5s',
     [theme.breakpoints.down('md')]: {
         fontSize: '16px',
     },
@@ -118,14 +122,13 @@ export const SlideDesc = styled(MTypography)(({ theme }) => ({
     },
 }));
 
-export const ButtonContainer = styled(MBox)(({ theme }) => ({
+export const ButtonContainer = styled(Box)(({ theme }) => ({
     display: 'flex',
     gap: '16px',
     opacity: 0,
-    animation: 'fadeInSlide 1s ease forwards 1s', // Delay after desc
+    animation: 'fadeInSlide 1s ease forwards 1s',
     [theme.breakpoints.down('sm')]: {
-        flexDirection: 'column',
-        gap: '12px',
+        gap: '8px',
     },
     '@keyframes fadeInSlide': {
         '0%': { opacity: 0, transform: 'translateY(20px)' },
@@ -171,7 +174,7 @@ export const SlideButtonSecondary = styled(Link)(({ theme }) => ({
     },
 }));
 
-export const SliderDots = styled(MBox)(({ theme }) => ({
+export const SliderDots = styled(Box)(({ theme }) => ({
     position: 'absolute',
     bottom: '20px',
     left: '50%',

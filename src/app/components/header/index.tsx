@@ -1,162 +1,268 @@
-'use client';
-import React, { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import './_.scss';
-import { Box, IconButton, useMediaQuery, Menu, MenuItem } from '@mui/material';
-import TopBar from '../topbar';
-import { useTheme } from '@mui/material/styles';
+"use client";
+import { useState } from 'react';
+import { AppBar } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import SearchIcon from '@mui/icons-material/Search';
+import PersonIcon from '@mui/icons-material/Person';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import Badge from '@mui/material/Badge';
 import {
-    Person,
-    Search,
-    ShoppingBasket,
-    ArrowDropDown,
-    Menu as MenuIcon,
-    Close,
-} from '@mui/icons-material';
+    StyledToolbar,
+    Logo,
+    NavButtons,
+    NavButton,
+    IconContainer,
+    StyledIconButton,
+    MobileMenuButton,
+    DropdownWrapper,
+    StyledMenu,
+    StyledMenuItem,
+    ProfileDropdownWrapper,
+    MobileMenu,
+    MobileSubMenu,
+    MobileMenuItem,
+} from './style';
+import TopBar from '../topbar';
+import MegaMenu from './MegaMenu';
+import shopMenu, { Category, Item } from './MenuData';
 
-//  Menu Links Array
-const menuLinks = [
+// Navigation links array
+const navLinks = [
     { label: 'About', href: '/about' },
-    {
-        label: 'Shop',
-        href: '/shop',
-        dropdown: [
-            { label: 'Dates', href: '/shop/dates' },
-            { label: 'Citrus', href: '/shop/citrus' },
-            { label: 'Mangoes', href: '/shop/mangoes' },
-        ],
-    },
+    { label: 'Shop', href: '/shop', isDropdown: true },
     { label: 'Gifts', href: '/gifts' },
     { label: 'Blog', href: '/blog' },
     { label: 'Testimonials', href: '/testimonials' },
     { label: 'Contact us', href: '/contact' },
 ];
 
-// Profile Menu Options
-const profileOptions = [
+// Profile dropdown items
+const profileDropdownItems = [
     { label: 'Sign In', href: '/signin' },
-    { label: 'Profile', href: '/profile' },
-    { label: 'Orders', href: '/orders' },
+    { label: 'Login', href: '/login' },
 ];
 
-const Header = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [profileAnchorEl, setProfileAnchorEl] = useState<HTMLElement | null>(null);
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+const Navbar = () => {
+    const [mobileMenuAnchorEl, setMobileMenuAnchorEl] = useState<null | HTMLElement>(null);
+    const [shopMenuAnchorEl, setShopMenuAnchorEl] = useState<null | HTMLElement>(null);
+    const [profileMenuAnchorEl, setProfileMenuAnchorEl] = useState<null | HTMLElement>(null);
+    const [mobileShopMenuAnchorEl, setMobileShopMenuAnchorEl] = useState<null | HTMLElement>(null);
 
-    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-    const handleProfileClick = (event: React.MouseEvent<HTMLElement>) => {
-        setProfileAnchorEl(event.currentTarget);
+    const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+        setMobileMenuAnchorEl(event.currentTarget);
     };
-    const handleProfileClose = () => setProfileAnchorEl(null);
+
+    const handleMobileMenuClose = () => {
+        setMobileMenuAnchorEl(null);
+        setMobileShopMenuAnchorEl(null);
+    };
+
+    const handleShopMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+        setShopMenuAnchorEl(event.currentTarget);
+    };
+
+    const handleShopMenuClose = () => {
+        setShopMenuAnchorEl(null);
+    };
+
+    const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+        setProfileMenuAnchorEl(event.currentTarget);
+    };
+
+    const handleProfileMenuClose = () => {
+        setProfileMenuAnchorEl(null);
+    };
+
+    const handleMobileShopMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+        setMobileShopMenuAnchorEl(event.currentTarget);
+    };
+
+    const handleMobileShopMenuClose = () => {
+        setMobileShopMenuAnchorEl(null);
+    };
+
+    const handleMenuCloseOnClick = (event: React.MouseEvent<HTMLElement> | React.KeyboardEvent | MouseEvent) => {
+        console.log('Outside click detected, ignoring');
+    };
 
     return (
-        <header className="header">
-            {/* Top Bar */}
+        <>
             <TopBar />
-            {/* Navbar */}
-            <Box className="header_navbar">
-                <Box className="header_navbar_logo">
-                    <Link href="/">
-                        <Image src="/logo.png" alt="Dolce Frutti" width={86} height={86} />
-                    </Link>
-                </Box>
-                <Box className="header_navbar_hamburger" onClick={toggleMenu}>
-                    <IconButton edge="start" aria-label="menu">
-                        {isMenuOpen ? <Close /> : <MenuIcon />}
-                    </IconButton>
-                </Box>
-
-                {/* Menu Items */}
-                <ul className={`header_navbar_menu ${isMenuOpen ? "header_navbar_menu_menuOpen" : ''}`}>
-                    {menuLinks.map((item, index) => (
-                        <li key={index} className={item.dropdown ? "header_navbar_menu_dropdown" : ''}>
-                            <Link href={item.href} onClick={toggleMenu} className="header_navbar_menu_link">
-                                <span>{item.label}</span>
-                                {item.dropdown && <ArrowDropDown className="header_navbar_menu_dropdown_arrow" />}
-                            </Link>
-                            {item.dropdown && (
-                                <ul className="header_navbar_menu_dropdown_dMenu">
-                                    {item.dropdown.map((subItem, subIndex) => (
-                                        <li key={subIndex}>
-                                            <Link href={subItem.href} onClick={toggleMenu}>
-                                                {subItem.label}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </li>
-                    ))}
-
-                    {/* Mobile Icons */}
-                    {isMobile && (
-                        <li className="header_navbar_menu_mActions">
-                            <Box className="header_navbar_menu_mActions_actions">
-                                <span className="header_navbar_menu_mActions_actions_i"><Search /></span>
-                                <span className="header_navbar_menu_mActions_actions_i" onClick={handleProfileClick}><Person />
-                                    <Menu
-                                        anchorEl={profileAnchorEl}
-                                        open={Boolean(profileAnchorEl)}
-                                        onClose={handleProfileClose}
-                                        classes={{ paper: 'header_navbar_menu_mActions_actions_i_profile' }}
+            <AppBar position="static" color="transparent" elevation={0}>
+                <StyledToolbar>
+                    <Logo src="/images/logo.png" alt="Dolce Frutti Logo" />
+                    <NavButtons>
+                        {navLinks.map((link) => (
+                            link.isDropdown ? (
+                                <DropdownWrapper
+                                    key={link.label}
+                                    onMouseEnter={handleShopMenuOpen}
+                                    onMouseLeave={handleShopMenuClose}
+                                >
+                                    <NavButton
+                                        aria-owns={shopMenuAnchorEl ? 'shop-menu' : undefined}
+                                        aria-haspopup="true"
+                                        sx={{ display: 'flex', alignItems: 'center', gap: '4px' }}
+                                        onClick={handleShopMenuOpen}
                                     >
-                                        {profileOptions.map((option, index) => (
-                                            <MenuItem
-                                                key={index}
-                                                onClick={handleProfileClose}
-                                            >
-                                                <Link href={option.href}>{option.label}</Link>
-                                            </MenuItem>
-                                        ))}
-                                    </Menu></span>
-                                <span className="header_navbar_menu_mActions_actions_i">
-                                    <Box className="header_navbar_menu_mActions_actions_i_cart">
-                                        <ShoppingBasket />
-                                        <span className="header_navbar_menu_mActions_actions_i_cart_badge">0</span>
-                                    </Box>
-                                </span>
-                            </Box>
-                        </li>
-                    )}
-                </ul>
-
-                {/* Desktop Icons */}
-                {!isMobile && (
-                    <Box className="header_navbar_dActions">
-                        <Box className="header_navbar_dActions_actions">
-                            <span className="header_navbar_dActions_actions_i"><Search /></span>
-                            <span className="header_navbar_dActions_actions_i" onClick={handleProfileClick}><Person /></span>
-                            <Menu
-                                anchorEl={profileAnchorEl}
-                                open={Boolean(profileAnchorEl)}
-                                onClose={handleProfileClose}
-                                classes={{ paper: 'header_navbar_dActions_actions_i_profile' }}
+                                        {link.label}
+                                        <ArrowDropDownIcon fontSize="small" />
+                                    </NavButton>
+                                    <MegaMenu
+                                        id="shop-menu"
+                                        anchorEl={shopMenuAnchorEl}
+                                        open={Boolean(shopMenuAnchorEl)}
+                                        onClose={handleShopMenuClose}
+                                        anchorOrigin={{
+                                            vertical: 'bottom',
+                                            horizontal: 'center',
+                                        }}
+                                        transformOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'center',
+                                        }}
+                                    />
+                                </DropdownWrapper>
+                            ) : (
+                                <NavButton key={link.label} href={link.href}>
+                                    {link.label}
+                                </NavButton>
+                            )
+                        ))}
+                    </NavButtons>
+                    <IconContainer>
+                        <StyledIconButton>
+                            <SearchIcon />
+                        </StyledIconButton>
+                        <ProfileDropdownWrapper
+                            onMouseEnter={handleProfileMenuOpen}
+                            onMouseLeave={handleProfileMenuClose}
+                            onClick={handleProfileMenuOpen}
+                        >
+                            <StyledIconButton
+                                aria-owns={profileMenuAnchorEl ? 'profile-menu' : undefined}
+                                aria-haspopup="true"
                             >
-                                {profileOptions.map((option, index) => (
-                                    <MenuItem
-                                        key={index}
-                                        onClick={handleProfileClose}
+                                <PersonIcon />
+                            </StyledIconButton>
+                            <StyledMenu
+                                id="profile-menu"
+                                anchorEl={profileMenuAnchorEl}
+                                open={Boolean(profileMenuAnchorEl)}
+                                onClose={handleMenuCloseOnClick}
+                                MenuListProps={{
+                                    sx: { py: 1 },
+                                }}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'right',
+                                }}
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                disableAutoFocusItem
+                                disableRestoreFocus
+                            >
+                                {profileDropdownItems.map((item) => (
+                                    <StyledMenuItem
+                                        key={item.label}
+                                        onClick={handleProfileMenuClose}
+                                        component="a"
+                                        href={item.href}
                                     >
-                                        <Link href={option.href} className="header_navbar_dActions_actions_i_profile_link">{option.label}</Link>
-                                    </MenuItem>
+                                        {item.label}
+                                    </StyledMenuItem>
                                 ))}
-                            </Menu>
-                            <span className="header_navbar_dActions_actions_i">
-                                <Box className="header_navbar_dActions_actions_i_cart">
-                                    <ShoppingBasket />
-                                    <span className="header_navbar_dActions_actions_i_cart_badge">0</span>
-                                </Box>
-                            </span>
-                        </Box>
-                    </Box>
-                )}
-            </Box>
-        </header>
+                            </StyledMenu>
+                        </ProfileDropdownWrapper>
+                        <StyledIconButton>
+                            <Badge badgeContent={4} color="error">
+                                <ShoppingCartIcon />
+                            </Badge>
+                        </StyledIconButton>
+                        <MobileMenuButton onClick={handleMobileMenuOpen}>
+                            {mobileMenuAnchorEl ? <CloseIcon /> : <MenuIcon />}
+                        </MobileMenuButton>
+                    </IconContainer>
+                    <MobileMenu
+                        anchorEl={mobileMenuAnchorEl}
+                        open={Boolean(mobileMenuAnchorEl)}
+                        onClose={handleMobileMenuClose}
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                    >
+                        {navLinks.map((link) => (
+                            link.isDropdown ? (
+                                <div key={link.label}>
+                                    <MobileMenuItem
+                                        onClick={handleMobileShopMenuOpen}
+                                    >
+                                        {link.label}
+                                        <ArrowDropDownIcon fontSize="small" />
+                                    </MobileMenuItem>
+                                    <MobileSubMenu
+                                        id="mobile-shop-menu"
+                                        anchorEl={mobileShopMenuAnchorEl}
+                                        open={Boolean(mobileShopMenuAnchorEl)}
+                                        onClose={handleMobileShopMenuClose}
+                                        anchorOrigin={{
+                                            vertical: 'bottom',
+                                            horizontal: 'left',
+                                        }}
+                                        transformOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'left',
+                                        }}
+                                    >
+                                        {shopMenu.map((category: Category) => (
+                                            <div key={category.category}>
+                                                <MobileMenuItem
+                                                    onClick={handleMobileMenuClose}
+                                                    component="a"
+                                                    href={category.link}
+                                                >
+                                                    {category.category}
+                                                </MobileMenuItem>
+                                                {category.items.map((item: Item) => (
+                                                    <MobileMenuItem
+                                                        key={item.id}
+                                                        onClick={handleMobileMenuClose}
+                                                        component="a"
+                                                        href={item.link}
+                                                    >
+                                                        {item.name}
+                                                    </MobileMenuItem>
+                                                ))}
+                                            </div>
+                                        ))}
+                                    </MobileSubMenu>
+                                </div>
+                            ) : (
+                                <MobileMenuItem
+                                    key={link.label}
+                                    onClick={handleMobileMenuClose}
+                                    component="a"
+                                    href={link.href}
+                                >
+                                    {link.label}
+                                </MobileMenuItem>
+                            )
+                        ))}
+                    </MobileMenu>
+                </StyledToolbar>
+            </AppBar>
+        </>
     );
 };
 
-export default Header;
+export default Navbar;

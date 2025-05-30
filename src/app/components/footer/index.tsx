@@ -1,7 +1,6 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
-import './_.scss';
 import {
     Twitter,
     LinkedIn,
@@ -10,11 +9,28 @@ import {
     Phone,
     Email,
     WhatsApp,
-    Fax
+    Fax,
 } from '@mui/icons-material';
+import {
+    FooterContainer,
+    FooterContent,
+    FooterColumn,
+    FooterLogo,
+    FooterText,
+    FooterContactItem,
+    FooterSocial,
+    FooterSocialLink,
+    FooterTitle,
+    FooterList,
+    FooterListItem,
+    FooterListLink,
+    FooterPaymentLink,
+    FooterBottom,
+    FooterBottomText,
+    FooterBottomLink,
+} from './style';
 
 const Footer = () => {
-    // Arrays for repeated sections
     const products = [
         'Dates',
         'Citrus',
@@ -40,12 +56,12 @@ const Footer = () => {
     ];
 
     const paymentMethods = [
-        { imgSrc: '/credit-card.png', alt: 'Credit/Debit Card', text: 'Credit/Debit Card' },
-        { imgSrc: '/paypal.png', alt: 'PayPal', text: 'PayPal' },
-        { imgSrc: '/google-pay.png', alt: 'Google Pay', text: 'Google Pay' },
-        { imgSrc: '/apple.png', alt: 'Apple Pay', text: 'Apple Pay' },
-        { imgSrc: '/zelle_icon.png', alt: 'Zelle', text: 'Zelle: shop@dolcefrutti.com' },
-        { imgSrc: '/finance.png', alt: 'Venmo', text: 'Venmo: shop@dolcefrutti.com' },
+        { imgSrc: '/images/credit-card.png', alt: 'Credit/Debit Card', text: 'Credit/Debit Card' },
+        { imgSrc: '/images/paypal.png', alt: 'PayPal', text: 'PayPal' },
+        { imgSrc: '/images/google-pay.png', alt: 'Google Pay', text: 'Google Pay' },
+        { imgSrc: '/images/apple.png', alt: 'Apple Pay', text: 'Apple Pay' },
+        { imgSrc: '/images/zelle_icon.png', alt: 'Zelle', text: 'Zelle: shop@dolcefrutti.com' },
+        { imgSrc: '/images/finance.png', alt: 'Venmo', text: 'Venmo: shop@dolcefrutti.com' },
     ];
 
     const customerCare = [
@@ -65,14 +81,14 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="footer">
-            <div className="footer_content">
+        <FooterContainer>
+            <FooterContent>
                 {/* First Column: Logo & Info */}
-                <div className="footer_content_column">
-                    <div className="footer_content_column_logo">
+                <FooterColumn className="first-column">
+                    <FooterLogo>
                         <Link href="/">
                             <Image
-                                src="/footer-logo.png"
+                                src="/images/footer-logo.png"
                                 alt="Dolce Frutti"
                                 width={150}
                                 height={100}
@@ -81,102 +97,103 @@ const Footer = () => {
                                 sizes="(max-width: 768px) 50vw, 150px"
                             />
                         </Link>
-                    </div>
-                    <p className="footer_content_column_text">
+                    </FooterLogo>
+                    <FooterText>
                         Lorem ipsum is simply dummy text of the and typesetLorem ipsum is
-                    </p>
-                    <div className="footer_content_column_contact">
-                        <p className="footer_content_column_contact_item">
-                            {/* <LocationOnIcon className="footer_content_column_contact_icon" /> */}
+                    </FooterText>
+                    <div>
+                        <FooterContactItem>
                             Dolce Frutti LLC 72-811 Hwy 111 Ste 1052 Palm Desert CA 92260
-                        </p>
-                        <p className="footer_content_column_contact_item">
-                            <Phone fontSize="small" className="footer_content_column_contact_icon" />
+                        </FooterContactItem>
+                        <FooterContactItem>
+                            <Phone fontSize="small" className="footer-contact-icon" />
                             760.786.7786
-                        </p>
+                        </FooterContactItem>
                     </div>
-                    <div className="footer_content_column_social">
+                    <FooterSocial>
                         {socialLinks.map((link, index) => (
-                            <Link key={index} href={link.href} className="footer_content_column_social_link">
+                            <FooterSocialLink key={index} href={link.href}>
                                 {link.icon}
-                            </Link>
+                            </FooterSocialLink>
                         ))}
-                    </div>
-                </div>
+                    </FooterSocial>
+                </FooterColumn>
 
                 {/* Second Column: Product */}
-                <div className="footer_content_column">
-                    <h3 className="footer_content_column_title">Product</h3>
-                    <ul className="footer_content_column_list">
+                <FooterColumn>
+                    <FooterTitle>Product</FooterTitle>
+                    <FooterList>
                         {products.map((product, index) => (
-                            <li key={index}>
-                                <Link href={`/products/${product.toLowerCase().replace(/ /g, '-')}`} className="footer_content_column_list_link">
+                            <FooterListItem key={index}>
+                                <FooterListLink href={`/products/${product.toLowerCase().replace(/ /g, '-')}`}>
                                     {product}
-                                </Link>
-                            </li>
+                                </FooterListLink>
+                            </FooterListItem>
                         ))}
-                    </ul>
-                </div>
+                    </FooterList>
+                </FooterColumn>
 
                 {/* Third Column: Company */}
-                <div className="footer_content_column">
-                    <h3 className="footer_content_column_title">Company</h3>
-                    <ul className="footer_content_column_list">
+                <FooterColumn className="third-column">
+                    <FooterTitle>Company</FooterTitle>
+                    <FooterList>
                         {companyLinks.map((link, index) => (
-                            <li key={index}>
-                                <Link href={link.href} className="footer_content_column_list_link">
-                                    {link.text}
-                                </Link>
-                            </li>
+                            <FooterListItem key={index}>
+                                <FooterListLink href={link.href}>{link.text}</FooterListLink>
+                            </FooterListItem>
                         ))}
-                    </ul>
-                </div>
+                    </FooterList>
+                </FooterColumn>
 
                 {/* Fourth Column: Payment */}
-                <div className="footer_content_column">
-                    <h3 className="footer_content_column_title">Payment</h3>
-                    <ul className="footer_content_column_payment">
+                <FooterColumn>
+                    <FooterTitle>Payment</FooterTitle>
+                    <FooterList>
                         {paymentMethods.map((method, index) => (
-                            <li key={index} className="footer_content_column_payment_item">
-                                <Link href={""} className="footer_content_column_payment_item_link">
+                            <FooterListItem key={index}>
+                                <FooterPaymentLink href="">
                                     <img src={method.imgSrc} alt={method.alt} />
                                     {method.text}
-                                </Link>
-                            </li>
+                                </FooterPaymentLink>
+                            </FooterListItem>
                         ))}
-                    </ul>
-                </div>
+                    </FooterList>
+                </FooterColumn>
 
                 {/* Fifth Column: Customer Care */}
-                <div className="footer_content_column">
-                    <h3 className="footer_content_column_title">Customer Care</h3>
-                    <ul className="footer_content_column_list">
+                <FooterColumn>
+                    <FooterTitle>Customer Care</FooterTitle>
+                    <FooterList>
                         {customerCare.map((care, index) => (
-                            <li key={index}>
-                                <Link href={care.href} className="footer_content_column_list_link">
+                            <FooterListItem key={index}>
+                                <FooterListLink href={care.href}>
                                     {care.icon}
                                     {care.text}
-                                </Link>
-                            </li>
+                                </FooterListLink>
+                            </FooterListItem>
                         ))}
-                    </ul>
-                </div>
-            </div>
+                    </FooterList>
+                </FooterColumn>
+            </FooterContent>
 
             {/* Bottom Section */}
-            <div className="footer_bottom">
-                <p className="footer_bottom_text">
-                    <Link href="/return-refund-policy" className="footer_bottom_link">
+            <FooterBottom>
+                <FooterBottomText>
+                    <FooterBottomLink href="/return-refund-policy">
                         Return & Refund Policy
-                    </Link>{' '}
+                    </FooterBottomLink>{' '}
                     |{' '}
-                    <Link href="/privacy-policy" className="footer_bottom_link">
+                    <FooterBottomLink href="/privacy-policy">
                         Privacy Policy
-                    </Link>{' '}
-                    | All Copy Right Reserved © 2025 Dolce Frutti LLC
-                </p>
-            </div>
-        </footer>
+                    </FooterBottomLink>{' '}
+                    | All Copy Right Reserved © 2025 {' '}
+                    <FooterBottomLink href="/">
+                        Dolce Frutti LLC
+                    </FooterBottomLink>{' '}
+
+                </FooterBottomText>
+            </FooterBottom>
+        </FooterContainer>
     );
 };
 

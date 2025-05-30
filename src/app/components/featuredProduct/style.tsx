@@ -1,278 +1,220 @@
-import { styled, Grid, Box, Typography, Card } from '@mui/material';
+import { styled, Card, CardContent, Typography, Box } from '@mui/material';
 
-export const FeaturedCard = styled(Box)(({ theme }) => ({
-    borderRadius: '20px',
-    position: 'relative',
-    minWidth: '300px',
+export const MainBox = styled(Box)(({ theme }) => ({
+    padding: '60px 8%',
+    [theme.breakpoints.down('md')]: {
+        padding: '20px 6%',
+    },
     [theme.breakpoints.down('sm')]: {
-        minWidth: '100%', // Ensure card takes full width on mobile
+        padding: '16px 6%',
     },
 }));
 
-export const CardPrimary = styled(Card)(({ theme }) => ({
-    backgroundColor: '#f5f5e5',
+export const LeftCard = styled(Card)(({ theme }) => ({
+    background: 'linear-gradient(135deg, #EEF0B4FF, #F8ECA7FF)',
+    borderRadius: '16px',
+    padding: '24px',
+    height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    [theme.breakpoints.down(992)]: {
-        flexDirection: 'column',
-        textAlign: 'center',
+    justifyContent: 'space-between',
+    animation: 'slideIn 0.6s ease-out forwards',
+    animationDelay: '0.2s',
+    opacity: 0,
+    '@keyframes slideIn': {
+        from: {
+            opacity: 0,
+            transform: 'translateY(20px)',
+        },
+        to: {
+            opacity: 1,
+            transform: 'translateY(0)',
+        },
     },
     [theme.breakpoints.down('sm')]: {
-        padding: '10px', // Reduce padding on mobile to avoid overflow
+        padding: '16px',
     },
 }));
 
-export const PrimaryCardContent = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    padding: '24px 10px 0 46px',
-    [theme.breakpoints.down(992)]: {
-        alignItems: 'center',
-        textAlign: 'center',
-        padding: '16px 8px 0 8px', // Adjust padding for tablet
-    },
+export const LeftCardContent = styled(CardContent)(({ theme }) => ({
+    padding: '20px 20px 0 20px !important',
+    textAlign: 'left',
     [theme.breakpoints.down('sm')]: {
-        padding: '12px 6px 0 6px', // Further reduce padding for mobile
+        padding: '10px !important',
     },
 }));
 
-export const PrimaryCardContentTitle = styled(Typography)(({ theme }) => ({
+export const LeftCardTitle = styled(Typography)(({ theme }) => ({
+    fontFamily: 'Poppins, sans-serif',
+    fontSize: '38px',
     fontWeight: 800,
-    fontSize: '40px',
-    [theme.breakpoints.between('sm', 'md')]: {
-        fontSize: '32px',
-    },
-    [theme.breakpoints.down('sm')]: {
+    color: '#000',
+    margin: '0 0 6px',
+    [theme.breakpoints.down('md')]: {
         fontSize: '28px',
     },
-    [theme.breakpoints.down('xs')]: {
-        fontSize: '24px', // Extra small screens (e.g., <400px)
+    [theme.breakpoints.down('sm')]: {
+        fontSize: '24px',
     },
 }));
 
-export const PrimaryCardContentPrice = styled(Typography)(({ theme }) => ({
-    fontSize: '26px',
-    fontWeight: 600,
-    margin: '10px 0',
-    paddingBottom: '12px',
+export const LeftCardPrice = styled(Typography)(({ theme }) => ({
+    fontFamily: 'Poppins, sans-serif',
+    fontSize: '28px',
+    color: '#000',
     '& strong': {
-        fontSize: '40px',
+        fontSize: '38px',
         fontWeight: 800,
-        [theme.breakpoints.between('sm', 'md')]: {
-            fontSize: '32px',
-        },
-        [theme.breakpoints.down('sm')]: {
+    },
+    [theme.breakpoints.down('md')]: {
+        fontSize: '20px',
+        '& strong': {
             fontSize: '28px',
         },
-        [theme.breakpoints.down('xs')]: {
+    },
+    [theme.breakpoints.down('sm')]: {
+        fontSize: '18px',
+        '& strong': {
             fontSize: '24px',
         },
     },
-    [theme.breakpoints.between('sm', 'md')]: {
-        fontSize: '22px',
-    },
-    [theme.breakpoints.down('sm')]: {
-        fontSize: '20px',
-    },
-    [theme.breakpoints.down('xs')]: {
-        fontSize: '18px',
-    },
 }));
 
-export const PrimaryCardContentShipping = styled(Typography)(({ theme }) => ({
-    fontSize: '18px',
-    fontWeight: 400,
-    color: '#5e5c5c',
-    marginBottom: '20px',
-    [theme.breakpoints.between('sm', 'md')]: {
-        fontSize: '16px',
-        marginBottom: '16px',
-    },
+export const LeftCardShipping = styled(Typography)(({ theme }) => ({
+    fontFamily: 'Poppins, sans-serif',
+    fontSize: '17px',
+    color: '#666',
+    margin: '16px 0 26px 0',
     [theme.breakpoints.down('sm')]: {
         fontSize: '14px',
-        marginBottom: '12px',
-    },
-    [theme.breakpoints.down('xs')]: {
-        fontSize: '12px',
-        marginBottom: '10px',
+        margin: '10px 0 20px 0',
     },
 }));
 
-export const PrimaryCardImage = styled(Box)(({ theme }) => ({
+export const LeftCardImg = styled(Box)(({ theme }) => ({
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'end',
-    padding: '0 40px 4px 0',
-    [theme.breakpoints.down(992)]: {
-        alignItems: 'center',
-        padding: '0 20px 4px 20px', // Center image on tablet
-        '& img': {
-            width: '100%',
-            height: 'auto', // Ensure image scales proportionally
-            maxWidth: '300px', // Maintain max width
+    justifyContent: 'flex-end',
+    '& img': {
+        transition: 'transform 0.3s ease',
+        '&:hover': {
+            transform: 'scale(1.1)',
         },
     },
     [theme.breakpoints.down('sm')]: {
-        padding: '0 10px 4px 10px',
-        '& img': {
-            maxWidth: '250px', // Slightly smaller on mobile
+        justifyContent: 'center',
+        marginTop: '10px',
+    },
+}));
+
+export const TopRightCard = styled(Card)(({ theme }) => ({
+    background: 'linear-gradient(135deg, #fff3e0, #ffe0b2)',
+    borderRadius: '16px',
+    padding: '20px 20px 20px 10px',
+    height: '100%',
+    animation: 'slideIn 0.6s ease-out forwards',
+    animationDelay: '0.4s',
+    opacity: 0,
+    '@keyframes slideIn': {
+        from: {
+            opacity: 0,
+            transform: 'translateY(20px)',
+        },
+        to: {
+            opacity: 1,
+            transform: 'translateY(0)',
         },
     },
-    [theme.breakpoints.down('xs')]: {
-        '& img': {
-            maxWidth: '200px', // Even smaller on extra small screens
+    [theme.breakpoints.down('sm')]: {
+        padding: '16px',
+    },
+}));
+
+export const BottomRightCard = styled(Card)(({ theme }) => ({
+    background: 'linear-gradient(135deg, #e6ffe6, #ccffcc)',
+    borderRadius: '16px',
+    padding: '20px 10px 20px 40px',
+    height: '100%',
+    animation: 'slideIn 0.6s ease-out forwards',
+    animationDelay: '0.6s',
+    opacity: 0,
+    '@keyframes slideIn': {
+        from: {
+            opacity: 0,
+            transform: 'translateY(20px)',
+        },
+        to: {
+            opacity: 1,
+            transform: 'translateY(0)',
         },
     },
-}));
-
-export const FeaturedCardSecondary = styled(Card)(({ theme }) => ({
-    backgroundColor: '#fceee4',
-    display: 'flex',
-    flexDirection: 'row',
-    gap: '16px',
-    '&:nth-child(2)': {
-        backgroundColor: '#e4f9e6',
-    },
-    [theme.breakpoints.down(992)]: {
-        flexDirection: 'column',
-        textAlign: 'center',
-    },
     [theme.breakpoints.down('sm')]: {
-        padding: '10px', // Add padding to avoid content touching edges
+        padding: '16px',
     },
 }));
 
-export const FeaturedCardThird = styled(Card)(({ theme }) => ({
-    backgroundColor: 'rgb(202, 243, 202)',
+export const RightCardContent = styled(CardContent)(({ theme }) => ({
     display: 'flex',
-    flexDirection: 'row',
-    paddingLeft: '26px',
-    gap: '16px',
-    [theme.breakpoints.down(992)]: {
-        flexDirection: 'column',
-        textAlign: 'center',
-        paddingLeft: '0', // Center content on tablet
-    },
-    [theme.breakpoints.down('sm')]: {
-        padding: '10px',
-    },
-}));
-
-export const FeaturedCardSec = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    width: '100%',
-    [theme.breakpoints.down(992)]: {
-        flexDirection: 'column', // Ensure content stacks properly
-        alignItems: 'center',
-    },
-}));
-
-export const FeaturedCardSecContent = styled(Box)(({ theme }) => ({
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
     textAlign: 'left',
-    padding: '30px 16px',
-    [theme.breakpoints.down(992)]: {
-        textAlign: 'center',
-        padding: '20px 12px', // Reduce padding for tablet
-    },
+    gap: '16px',
+    padding: '0 !important',
     [theme.breakpoints.down('sm')]: {
-        padding: '16px 8px', // Further reduce for mobile
+        flexDirection: 'column',
+        textAlign: 'center',
+        gap: '10px',
     },
 }));
 
-export const FeaturedCardSecTitle = styled(Typography)(({ theme }) => ({
+export const RightCardTitle = styled(Typography)(({ theme }) => ({
+    fontFamily: 'Poppins, sans-serif',
     fontSize: '24px',
     fontWeight: 800,
-    [theme.breakpoints.between('sm', 'md')]: {
+    color: '#000',
+    margin: '0 0 8px',
+    [theme.breakpoints.down('md')]: {
         fontSize: '20px',
     },
     [theme.breakpoints.down('sm')]: {
         fontSize: '18px',
     },
-    [theme.breakpoints.down('xs')]: {
-        fontSize: '16px',
-    },
 }));
 
-export const FeaturedCardSecPrice = styled(Typography)(({ theme }) => ({
+export const RightCardPrice = styled(Typography)(({ theme }) => ({
+    fontFamily: 'Poppins, sans-serif',
     fontSize: '20px',
-    fontWeight: 600,
-    paddingBottom: '6px',
+    color: '#000',
+    margin: '0 0 8px',
     '& strong': {
-        fontSize: '24px',
         fontWeight: 800,
-        [theme.breakpoints.between('sm', 'md')]: {
-            fontSize: '20px',
-        },
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '18px',
-        },
-        [theme.breakpoints.down('xs')]: {
-            fontSize: '16px',
-        },
     },
-    [theme.breakpoints.between('sm', 'md')]: {
+    [theme.breakpoints.down('md')]: {
         fontSize: '18px',
     },
     [theme.breakpoints.down('sm')]: {
         fontSize: '16px',
     },
-    [theme.breakpoints.down('xs')]: {
-        fontSize: '14px',
-    },
 }));
 
-export const FeaturedCardSecShipping = styled(Typography)(({ theme }) => ({
+export const RightCardShipping = styled(Typography)(({ theme }) => ({
+    fontFamily: 'Poppins, sans-serif',
     fontSize: '16px',
-    fontWeight: 400,
-    color: '#5e5c5c',
-    marginBottom: '12px',
-    [theme.breakpoints.between('sm', 'md')]: {
+    color: '#666',
+    margin: '0 0 16px',
+    [theme.breakpoints.down('sm')]: {
         fontSize: '14px',
+    },
+}));
+
+export const RightCardImg = styled(Box)(({ theme }) => ({
+    textAlign: 'center',
+    '& img': {
+        transition: 'transform 0.3s ease',
+        '&:hover': {
+            transform: 'scale(1.1)',
+        },
+    },
+    [theme.breakpoints.down('sm')]: {
         marginBottom: '10px',
-    },
-    [theme.breakpoints.down('sm')]: {
-        fontSize: '12px',
-        marginBottom: '8px',
-    },
-    [theme.breakpoints.down('xs')]: {
-        fontSize: '10px',
-        marginBottom: '6px',
-    },
-}));
-
-export const FeaturedCardSecImage = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'end',
-    padding: '0 40px 4px 0',
-    [theme.breakpoints.down(992)]: {
-        alignItems: 'center',
-        padding: '0 20px 4px 20px', // Center image on tablet
-        '& img': {
-            width: '100%',
-            height: 'auto', // Scale image proportionally
-            maxWidth: '236px', // Maintain max width
-        },
-    },
-    [theme.breakpoints.down('sm')]: {
-        padding: '0 10px 4px 10px',
-        '& img': {
-            maxWidth: '200px', // Smaller on mobile
-        },
-    },
-    [theme.breakpoints.down('xs')]: {
-        '& img': {
-            maxWidth: '180px', // Even smaller on extra small screens
-        },
-    },
-}));
-
-export const FeaturedColumn = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '20px',
-    [theme.breakpoints.down('sm')]: {
-        gap: '16px', // Reduce gap on mobile for better spacing
     },
 }));

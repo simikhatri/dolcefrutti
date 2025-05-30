@@ -11,10 +11,10 @@ export const Header = styled(Box)(({ theme }) => ({
     },
 }));
 
-export const Controls = styled(Box)(() => ({
+export const Controls = styled(Box)({
     display: 'flex',
     gap: '12px',
-}));
+});
 
 export const ControlsBtn = styled("button")(({ theme }) => ({
     backgroundColor: '#e1c343',
@@ -33,16 +33,16 @@ export const ControlsBtn = styled("button")(({ theme }) => ({
     },
 }));
 
-export const ProgressBar = styled(Box)(() => ({
+export const ProgressBar = styled(Box)({
     marginBottom: '2rem',
-}));
+});
 
-export const ProgressLine = styled(Box)(() => ({
+export const ProgressLine = styled(Box)({
     width: '100%',
     height: '4px',
     backgroundColor: '#ccc',
     position: 'relative',
-}));
+});
 
 export const ProgressLineBar = styled(Box)(({ theme }) => ({
     position: 'absolute',
@@ -57,13 +57,13 @@ export const ProgressLineBar = styled(Box)(({ theme }) => ({
     },
 }));
 
-export const Slider = styled(Box)(() => ({
+export const Slider = styled(Box)({
     display: 'flex',
     overflowX: 'hidden',
     scrollSnapType: 'x mandatory',
     gap: '10px',
     width: '100%',
-}));
+});
 
 export const SliderCard = styled(Box)(({ theme }) => ({
     flex: '0 0 18.7%',
@@ -82,10 +82,10 @@ export const SliderCard = styled(Box)(({ theme }) => ({
     },
 }));
 
-export const SliderCardLink = styled(Link)(() => ({
+export const SliderCardLink = styled(Link)({
     textDecoration: 'none',
     color: '#000',
-}));
+});
 
 export const SliderCardImage = styled(Box)(({ theme }) => ({
     width: '200px',
@@ -110,11 +110,11 @@ export const SliderCardImage = styled(Box)(({ theme }) => ({
     },
 }));
 
-export const SliderCardName = styled(Typography)(() => ({
+export const SliderCardName = styled(Typography)({
     fontSize: '17px',
     fontWeight: 600,
     margin: '16px 0 8px',
     '&:hover': {
         color: '#e1c343',
     },
-}));
+});

@@ -2,81 +2,104 @@
 
 import { Grid } from '@mui/material';
 import Image from 'next/image';
-import Shopbtn from '../ui/shopbtn';
-import { Styledh1, StyledBox, Styledh3 } from '../ui/Common';
 import {
-    CardPrimary,
-    PrimaryCardContent,
-    PrimaryCardContentTitle,
-    PrimaryCardContentPrice,
-    PrimaryCardContentShipping,
-    PrimaryCardImage,
-    FeaturedCardSecondary,
-    FeaturedCardThird,
-    FeaturedCardSec,
-    FeaturedCardSecContent,
-    FeaturedCardSecTitle,
-    FeaturedCardSecPrice,
-    FeaturedCardSecShipping,
-    FeaturedCardSecImage,
-    FeaturedColumn,
+    MainBox,
+    LeftCard,
+    LeftCardContent,
+    LeftCardTitle,
+    LeftCardPrice,
+    LeftCardShipping,
+    LeftCardImg,
+    TopRightCard,
+    BottomRightCard,
+    RightCardContent,
+    RightCardTitle,
+    RightCardPrice,
+    RightCardShipping,
+    RightCardImg,
 } from './style';
+import Shopbtn from '../ui/shopbtn';
 
 const FeaturedProduct = () => {
     return (
-        <StyledBox>
-            <Grid container spacing={2}>
+        <MainBox>
+            <Grid container spacing={3}>
+                {/* Left Column - Single Large Card */}
                 <Grid size={{ xs: 12, md: 6 }}>
-                    <CardPrimary>
-                        <PrimaryCardContent>
-                            <PrimaryCardContentTitle>Yellow Barhi Dates</PrimaryCardContentTitle>
-                            <PrimaryCardContentPrice>From <strong>$23.02</strong></PrimaryCardContentPrice>
-                            <PrimaryCardContentShipping>Free Shipping</PrimaryCardContentShipping>
-                            <Shopbtn text="Order Now" href='' />
-                        </PrimaryCardContent>
-                        <PrimaryCardImage>
-                            <Image src="/datesbg.png" alt="Yellow Barhi Dates" width={300} height={200} />
-                        </PrimaryCardImage>
-                    </CardPrimary>
+                    <LeftCard>
+                        <LeftCardContent>
+                            <LeftCardTitle variant="h2">Yellow Barhi Dates</LeftCardTitle>
+                            <LeftCardPrice>
+                                From <strong>$23.02</strong>
+                            </LeftCardPrice>
+                            <LeftCardShipping>Free Shipping</LeftCardShipping>
+                            <Shopbtn text="Shop Now" href={``} />
+                        </LeftCardContent>
+                        <LeftCardImg>
+                            <Image
+                                src="/images/datesbg.png"
+                                alt="Yellow Barhi Dates"
+                                width={400}
+                                height={250}
+                            />
+                        </LeftCardImg>
+                    </LeftCard>
                 </Grid>
 
+                {/* Right Column - Two Smaller Cards */}
                 <Grid size={{ xs: 12, md: 6 }}>
-                    <FeaturedColumn>
+                    <Grid container direction="column" spacing={3}>
+                        {/* Top Right Card */}
                         <Grid size={{ xs: 12 }}>
-                            <FeaturedCardSecondary>
-                                <FeaturedCardSec>
-                                    <FeaturedCardSecImage>
-                                        <Image src="/Elberta-Peaches.png" alt="Minneola Tangelos" width={236} height={218} />
-                                    </FeaturedCardSecImage>
-                                    <FeaturedCardSecContent>
-                                        <FeaturedCardSecTitle>Minneola Tangelos</FeaturedCardSecTitle>
-                                        <FeaturedCardSecPrice>From <strong>$82.67</strong></FeaturedCardSecPrice>
-                                        <FeaturedCardSecShipping>Free Shipping</FeaturedCardSecShipping>
-                                        <Shopbtn text="Order Now" href='' />
-                                    </FeaturedCardSecContent>
-                                </FeaturedCardSec>
-                            </FeaturedCardSecondary>
+                            <TopRightCard>
+                                <RightCardContent>
+                                    <RightCardImg>
+                                        <Image
+                                            src="/images/Elberta-Peaches.png"
+                                            alt="Minneola Tangelos"
+                                            width={236}
+                                            height={210}
+                                        />
+                                    </RightCardImg>
+                                    <div>
+                                        <RightCardTitle variant="h3">Minneola Tangelos</RightCardTitle>
+                                        <RightCardPrice>
+                                            From <strong>$82.67</strong>
+                                        </RightCardPrice>
+                                        <RightCardShipping>Free Shipping</RightCardShipping>
+                                        <Shopbtn text="Shop Now" href={``} />
+                                    </div>
+                                </RightCardContent>
+                            </TopRightCard>
                         </Grid>
 
+                        {/* Bottom Right Card */}
                         <Grid size={{ xs: 12 }}>
-                            <FeaturedCardThird>
-                                <FeaturedCardSec>
-                                    <FeaturedCardSecContent>
-                                        <FeaturedCardSecTitle>Bartlett Pears</FeaturedCardSecTitle>
-                                        <FeaturedCardSecPrice>From <strong>$29.99</strong></FeaturedCardSecPrice>
-                                        <FeaturedCardSecShipping>Free Shipping</FeaturedCardSecShipping>
-                                        <Shopbtn text="Order Now" href='' />
-                                    </FeaturedCardSecContent>
-                                    <FeaturedCardSecImage>
-                                        <Image src="/Bartlett-Pears.png" alt="Bartlett Pears" width={236} height={218} />
-                                    </FeaturedCardSecImage>
-                                </FeaturedCardSec>
-                            </FeaturedCardThird>
+                            <BottomRightCard>
+                                <RightCardContent>
+                                    <div>
+                                        <RightCardTitle variant="h3">Bartlett Pears</RightCardTitle>
+                                        <RightCardPrice>
+                                            From <strong>$29.99</strong>
+                                        </RightCardPrice>
+                                        <RightCardShipping>Free Shipping</RightCardShipping>
+                                        <Shopbtn text="Shop Now" href={``} />
+                                    </div>
+                                    <RightCardImg>
+                                        <Image
+                                            src="/images/Bartlett-Pears.png"
+                                            alt="Bartlett Pears"
+                                            width={236}
+                                            height={210}
+                                        />
+                                    </RightCardImg>
+                                </RightCardContent>
+                            </BottomRightCard>
                         </Grid>
-                    </FeaturedColumn>
+                    </Grid>
                 </Grid>
             </Grid>
-        </StyledBox>
+        </MainBox>
     );
 };
 

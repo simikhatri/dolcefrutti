@@ -1,12 +1,21 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Box, Menu, MenuItem } from '@mui/material';
 import { Instagram, LinkedIn, Facebook, YouTube } from '@mui/icons-material';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import './_.scss';
+import {
+    AnnouncementBar,
+    MarqueeWrapper,
+    MarqueeText,
+    TopBarContainer,
+    LanguageSelector,
+    LanguageMenu,
+    LanguageMenuItem,
+    SocialIconsContainer,
+    SocialIconWrapper,
+    SocialIconLink,
+} from './style';
 
-// ✅ Social Icons Array
 const socialIcons = [
     { icon: <Instagram />, href: '#' },
     { icon: <LinkedIn />, href: '#' },
@@ -14,7 +23,6 @@ const socialIcons = [
     { icon: <Facebook />, href: '#' },
 ];
 
-// ✅ Language Options Array
 const languageOptions = [
     { label: 'English', value: 'en' },
     { label: 'Spanish', value: 'es' },
@@ -23,53 +31,63 @@ const languageOptions = [
 
 const TopBar = () => {
     const [langAnchorEl, setLangAnchorEl] = useState<HTMLElement | null>(null);
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        // Set isClient to true only after mounting on the client
+        setIsClient(true);
+    }, []);
 
     const handleLangClick = (event: React.MouseEvent<HTMLElement>) => setLangAnchorEl(event.currentTarget);
     const handleLangClose = () => setLangAnchorEl(null);
 
     return (
         <>
-            {/* Announcement Bar */}
-            <Box className="announcement">
-                <div className='marquee-wrapper'>
-                    <span className='marquee-text'>
-                        Welcome To The Dolce Frutti Website – Enjoy The Taste Of Summer With Fresh Yellow Barhi Dates, Citrus, And Mangoes – Now With Up To 15% OFF On All Seasonal Fruits🥭🍑🌴!
-                    </span>
-                    <span className='marquee-text'>
-                        Welcome To The Dolce Frutti Website – Enjoy The Taste Of Summer With Fresh Yellow Barhi Dates, Citrus, And Mangoes – Now With Up To 15% OFF On All Seasonal Fruits!
-                    </span>
-                </div>
-            </Box>
-            <Box className="topBar">
-                <Box className="topBar_lang" onClick={handleLangClick}>
+            <AnnouncementBar>
+                <MarqueeWrapper>
+                    {/* Render marquee only on client to avoid SSR mismatch */}
+                    {isClient && (
+                        <>
+                            <MarqueeText>
+                                Welcome To The Dolce Frutti Website – Enjoy The Taste Of Summer With Fresh Yellow Barhi Dates, Citrus, And Mangoes – Now With Up To 15% OFF On All Seasonal Fruits🥭🍑🌴!
+                            </MarqueeText>
+                            <MarqueeText>
+                                Welcome To The Dolce Frutti Website – Enjoy The Taste Of Summer With Fresh Yellow Barhi Dates, Citrus, And Mangoes – Now With Up To 15% OFF On All Seasonal Fruits🥭🍑🌴!
+                            </MarqueeText>
+                        </>
+                    )}
+                    {!isClient && (
+                        // Static fallback for SSR
+                        <MarqueeText>
+                            Welcome To The Dolce Frutti Website – Enjoy The Taste Of Summer With Fresh Yellow Barhi Dates, Citrus, And Mangoes – Now With Up To 15% OFF On All Seasonal Fruits🥭🍑🌴!
+                        </MarqueeText>
+                    )}
+                </MarqueeWrapper>
+            </AnnouncementBar>
+            <TopBarContainer>
+                <LanguageSelector onClick={handleLangClick}>
                     English <ArrowDownwardIcon fontSize="small" />
-                </Box>
-                <Menu
+                </LanguageSelector>
+                <LanguageMenu
                     anchorEl={langAnchorEl}
                     open={Boolean(langAnchorEl)}
                     onClose={handleLangClose}
-                    classes={{ paper: 'topBar_lang_dMenu' }}
                 >
                     {languageOptions.map((lang, index) => (
-                        <MenuItem
-                            key={index}
-                            onClick={handleLangClose}
-                            className="topBar_lang_dMenu_item"
-                        >
+                        <LanguageMenuItem key={index} onClick={handleLangClose}>
                             <Link href={`?lang=${lang.value}`}>{lang.label}</Link>
-                        </MenuItem>
+                        </LanguageMenuItem>
                     ))}
-                </Menu>
-                <Box className="topBar_lang_socialIcons">
+                </LanguageMenu>
+                <SocialIconsContainer>
                     {socialIcons.map(({ icon, href }, idx) => (
-                        <span key={idx} className="topBar_lang_socialIcons_span">
-                            <Link href={href} className="topBar_lang_socialIcons_span_link">{icon}</Link>
-                        </span>
+                        <SocialIconWrapper key={idx}>
+                            <SocialIconLink href={href}>{icon}</SocialIconLink>
+                        </SocialIconWrapper>
                     ))}
-                </Box>
-            </Box>
+                </SocialIconsContainer>
+            </TopBarContainer>
         </>
-
     );
 };
 

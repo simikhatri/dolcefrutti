@@ -65,10 +65,9 @@ const ProductsSection = () => {
                     <ProductsGrid size={{ xs: 12, sm: 6, md: 3 }} key={product.id}>
                         <StyledLink href={`/product/${product.id}`}>
                             <StyledCard>
+                                <CardBadge badgeContent="New"></CardBadge>
                                 <CardHead>
-                                    <CardBadge badgeContent="New">
-                                        <CardImage src={product.image} alt={product.name} width={200} height={200} />
-                                    </CardBadge>
+                                    <CardImage src={product.image} alt={product.name} width={200} height={200} />
                                 </CardHead>
 
                                 <CardDetails>

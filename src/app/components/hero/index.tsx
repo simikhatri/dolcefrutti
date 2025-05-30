@@ -1,8 +1,17 @@
 'use client';
-import { Box } from '@mui/material';
 import { useEffect, useRef } from 'react';
-import './_.scss';
-import Link from 'next/link';
+import {
+    HeroContainer,
+    HeroVideoWrapper,
+    HeroVideoPlayer,
+    HeroContent,
+    HeroSubtitle,
+    HeroTitle,
+    HeroButtonsWrapper,
+    HeroFarmButton,
+    HeroShopButton
+} from './style';
+import { Box } from '@mui/material';
 
 const Hero = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -14,47 +23,37 @@ const Hero = () => {
     }, []);
 
     return (
-        <Box component="section" className="hero">
-            <Box className="hero_video">
-                <video
+        <HeroContainer>
+            <HeroVideoWrapper>
+                <HeroVideoPlayer
                     ref={videoRef}
                     loop
                     muted
                     playsInline
-                    className="hero_video_player"
                 >
-                    <source src="/video.mp4" type="video/mp4" /> {/* Replace with your video path */}
+                    <source src="/images/video.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
-                </video>
-            </Box>
-            <Box className="hero_content">
-                <Box className="hero_content_text">
-                    <p className="hero_content_text_subtitle">
+                </HeroVideoPlayer>
+            </HeroVideoWrapper>
+            <HeroContent>
+                <Box>
+                    <HeroSubtitle variant="subtitle1">
                         🍏 100% Organic Fruit
-                    </p>
-                    <h2 className="hero_content_text_title">
-                        Our Dolce Frutti <br />  Farm Organic Product
-                    </h2>
+                    </HeroSubtitle>
+                    <HeroTitle variant="h2">
+                        Our Dolce Frutti <br /> Farm Organic Product
+                    </HeroTitle>
                 </Box>
-                <Box className="hero_content_btns">
-                    <Link href={""} className="hero_content_btns_farm">
+                <HeroButtonsWrapper>
+                    <HeroFarmButton href="/">
                         Our Farm
-                    </Link>
-                    <Link href={""} className="hero_content_btns_shop">
+                    </HeroFarmButton>
+                    <HeroShopButton href="/">
                         Shop Now
-                    </Link>
-                </Box>
-                {/* <Box className="hero_logo">
-          <Image
-            src="/dolce-frutti-badge.png" // Replace with your logo image path
-            alt="Dolce Frutti"
-            width={100}
-            height={100}
-            objectFit="contain"
-          />
-        </Box> */}
-            </Box>
-        </Box>
+                    </HeroShopButton>
+                </HeroButtonsWrapper>
+            </HeroContent>
+        </HeroContainer>
     );
 };
 

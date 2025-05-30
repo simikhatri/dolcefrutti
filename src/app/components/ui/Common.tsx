@@ -41,9 +41,10 @@ export const Styledbutton = styled(Button)(({ theme }) => ({
     color: 'white',
     fontWeight: 'bold',
     fontSize: '15px',
-    padding: '6px 20px',
-    borderRadius: '6px',
+    padding: '10px 20px',
+    borderRadius: '12px',
     textTransform: 'capitalize',
+    width: '184px',
     '&:hover': {
         background: '#e1c343',
         color: 'black',
