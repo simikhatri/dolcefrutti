@@ -5,15 +5,15 @@ interface ProfileProps {
     short: string;
 }
 
-export const Wrap = styled(Box)(({ theme }) => ({
+export const Wrap = styled(Box)({
     padding: '60px 8%',
     backgroundColor: '#fff',
     textAlign: 'center',
-}));
+});
 
-export const StyledBox = styled(Box)(({ theme }) => ({
+export const StyledBox = styled(Box)({
     padding: '40px 0',
-}));
+});
 
 export const Title = styled(Typography)({
     fontSize: '36px',

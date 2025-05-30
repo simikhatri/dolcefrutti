@@ -25,11 +25,11 @@ export const AnnouncementBar = styled(Box)(({ theme }) => ({
 }));
 
 
-export const MarqueeWrapper = styled('div')(({ theme }) => ({
+export const MarqueeWrapper = styled('div')({
     display: 'flex',
     width: '200%',
     animation: `${scrollLeft} 20s linear infinite`,
-}));
+});
 
 
 export const MarqueeText = styled('span')(({ theme }) => ({

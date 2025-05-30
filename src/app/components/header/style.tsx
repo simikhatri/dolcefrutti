@@ -120,7 +120,7 @@ export const StyledMenu = styled(Menu)(() => ({
     },
 }));
 
-export const StyledMenuItem = styled(MenuItem)<StyledMenuItemProps>(({ theme }) => ({
+export const StyledMenuItem = styled(MenuItem)<StyledMenuItemProps>({
     fontSize: '14px',
     color: '#000',
     justifyContent: 'flex-start',
@@ -128,7 +128,7 @@ export const StyledMenuItem = styled(MenuItem)<StyledMenuItemProps>(({ theme }) 
         backgroundColor: '#e1c343',
         color: '#fff',
     },
-}));
+});
 
 export const MobileMenu = styled(Menu)(({ theme }) => ({
     '& .MuiPaper-root': {

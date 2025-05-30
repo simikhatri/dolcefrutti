@@ -1,4 +1,3 @@
-import { Padding } from '@mui/icons-material';
 import { styled, Tabs, Tab, Grid, Badge } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
